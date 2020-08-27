@@ -1,80 +1,77 @@
 <script lang="ts">
-  import { IconType, LoadingStyle } from "./app"
+  // import { IconType, LoadingStyle } from "./app"
   import Icon from "./icon/index.svelte"
   import Spinner from "./spinner/index.svelte"
 
   type IState = {
     show: boolean
     text?: string
-    icon?: IconType
+    icon?: any
     type?: "loading" | "icon" | "text"
-    loadingStyle?: LoadingStyle
+    loadingStyle?: any
+    forbidClick?: boolean
+  }
+
+  type Option = {
+    duration?: number
+    forbidClick?: boolean
   }
 
   const defaultState: IState = {
     show: false,
     text: null,
     icon: null,
+    forbidClick: false,
   }
 
   let state: IState = { ...defaultState }
 
-  export function text(text: string) {
+  export function text(text: string, options?: Option) {
     if (!text) return
     state.type = "text"
     state.text = text
-    return show()
+    options = Object.assign({ duration: 1500 }, options)
+    return show(options)
   }
 
-  export function info(text: string, duration?: number) {
-    return showIconToast(text, "info", duration)
+  export function info(text: string, options?: Option) {
+    return showIconToast(text, "info", options)
   }
 
-  export function success(text: string, duration?: number) {
-    return showIconToast(text, "success", duration)
+  export function success(text: string, options?: Option) {
+    return showIconToast(text, "success", options)
   }
 
-  export function error(text: string, duration?: number) {
-    return showIconToast(text, "error", duration)
+  export function error(text: string, options?: Option) {
+    return showIconToast(text, "error", options)
   }
 
-  export function warning(text: string, duration?: number) {
-    return showIconToast(text, "warning", duration)
+  export function warning(text: string, options?: Option) {
+    return showIconToast(text, "warning", options)
   }
 
   export function loading(
     options?:
-      | { text?: string; duration?: number; style?: LoadingStyle }
+      | { text?: string; duration?: number; style?: any; forbidClick?: boolean }
       | string
   ) {
+    clearTimeout(timer)
     state.type = "loading"
     if (!options) {
-      state.show = true
-      return clear
+      return show()
     } else if (typeof options === "string") {
       state.text = options
-      state.show = true
-      return clear
+      return show()
     } else {
       state.text = options.text
-      state.show = true
       state.loadingStyle = options.style || "style0"
-
-      if (options.duration) {
-        setTimeout(() => {
-          clear()
-        }, options.duration)
-      }
-
-      return {
-        setText,
-        clear,
-      }
+      return show(options)
     }
   }
 
   export function clear() {
     clearTimeout(timer)
+    state.show = false
     state = { ...defaultState }
   }
 
@@ -82,27 +79,38 @@
     state.text = text
   }
 
-  function showIconToast(text: string, icon: IconType, duration?: number) {
+  function showIconToast(text: string, icon: any, options?: Option) {
     state.type = "icon"
     state.icon = icon
     state.text = text
-    return show(duration)
+    options = Object.assign({ duration: 1500 }, options)
+    return show(options)
   }
 
   /** 定时器 */
-  let timer: NodeJS.Timeout
+  let timer: any
 
-  function show(duration = 1000) {
+  function show(options?: Option) {
     clearTimeout(timer)
     state.show = true
-    if (duration !== -1) {
+    if (options?.forbidClick) {
+      state.forbidClick = true
+    } else {
+      state.forbidClick = false
+    }
+    if (options?.duration > 0) {
       timer = setTimeout(() => {
         state.show = false
-      }, duration)
+      }, options!.duration)
     }
-    return clear
+    return {
+      setText,
+      clear,
+    }
   }
-</script><style>
+</script>
+
+<style>
   .toast-box {
     position: fixed;
     left: 0;
@@ -117,7 +125,8 @@
     transition: all 0.3s;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
+    /* pointer-events: none;
+    pointer-events: all; */
   }
 
   .show {
@@ -126,7 +135,8 @@
   }
 
   .content-box {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
+    /* background: #444; */
     border-radius: 12px;
     z-index: 1002;
   }
@@ -156,7 +166,12 @@
     text-align: center;
     color: #fff;
   }
-</style><div class="toast-box" class:show={state.show}>
+</style>
+
+<div
+  class="toast-box"
+  class:show={state.show}
+  style="pointer-events: {state.forbidClick ? 'all' : 'none'}">
   <div class="content-box">
     {#if state.type === 'icon'}
       <div class="icon-box">
@@ -180,4 +195,3 @@
     {/if}
   </div>
 </div>
-

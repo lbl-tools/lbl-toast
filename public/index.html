@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>lb-toast demo</title>
+
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="../dist/index.css" />
+
+    <script defer src="../dist/index.js"></script>
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .btnBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .btnBox > button {
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="btnBox">
+      <button id="btn0">关闭</button>
+      <button id="btn1">显示文本</button>
+      <button id="btn2">显示不会自动关闭的信息</button>
+      <button id="btn3">显示成功</button>
+      <button id="btn4">显示失败</button>
+      <button id="btn5">显示警告</button>
+      <button id="btn6">显示加载中</button>
+      <button id="btn7">动态修改文本</button>
+		</div>
+		
+		<script src="./index.js"></script>
+  </body>
+</html>

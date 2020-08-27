@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { IconType } from "../app"
+  // import { IconType } from "../app"
   import SucessIcon from "./success.svelte"
   import ErrorIcon from "./error.svelte"
   import InfoIcon from "./info.svelte"
   import WarningIcon from "./warning.svelte"
 
-  export let type: IconType
+  export let type: any
 </script>
 
 {#if type === 'error'}
