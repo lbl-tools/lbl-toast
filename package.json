@@ -1,0 +1,23 @@
+{
+  "name": "lb-toast",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lb-tools/lb-toast.git",
+  "author": "lblblong <1162275271@qq.com>",
+  "license": "MIT",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "serve": "parcel serve src/index.html",
+    "build": "parcel build src/app.ts --no-source-maps"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^1.0.10",
+    "node-sass": "^4.14.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.6",
+    "svelte-check": "^1.0.26",
+    "svelte-preprocess": "^4.1.1",
+    "typescript": "^4.0.2",
+    "svelte": "^3.24.1"
+  }
+}
