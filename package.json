@@ -1,6 +1,6 @@
 {
   "name": "lb-toast",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "types": "index.d.ts",
