@@ -1,6 +1,4 @@
 <script lang="ts">
-  // import { LoadingStyle } from "../app"
-
   import SpinnerStyle0 from "./style0.svelte"
   import SpinnerStyle1 from "./style1.svelte"
   import SpinnerStyle2 from "./style2.svelte"
@@ -10,7 +8,7 @@
   import SpinnerStyle6 from "./style6.svelte"
   import SpinnerStyle7 from "./style7.svelte"
 
-  export let type: any
+  export let type: LoadingStyle
 </script>
 
 {#if type === 'style1'}

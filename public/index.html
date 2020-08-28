@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="../dist/index.css" />
 
     <script defer src="../dist/index.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/CodeFlask.js/1.4.1/codeflask.min.js"></script>
-    <script src="./data.js"></script>
   </head>
 
   <body>
@@ -40,9 +38,6 @@
       <button onclick="showLoadingWithStyle('style6')">样式6</button>
       <button onclick="showLoadingWithStyle('style7')">样式7</button>
     </div>
-
-    <h4>查看代码</h4>
-    <div id="code"></div>
 
     <script>
       function toastClear() {
@@ -115,14 +110,6 @@
           forbidClick: true,
           duration: 1000 * 10,
         })
-      }
-
-      window.onload = () => {
-        const flask = new CodeFlask(document.getElementById("code"), {
-          language: "html",
-          readonly: true,
-        })
-        flask.updateCode(codeString)
       }
     </script>
   </body>

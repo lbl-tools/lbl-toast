@@ -1,14 +1,14 @@
 <script lang="ts">
-  // import { IconType, LoadingStyle } from "./app"
+  import { fade } from "svelte/transition"
   import Icon from "./icon/index.svelte"
   import Spinner from "./spinner/index.svelte"
 
   type IState = {
     show: boolean
     text?: string
-    icon?: any
+    icon?: IconType
     type?: "loading" | "icon" | "text"
-    loadingStyle?: any
+    loadingStyle?: LoadingStyle
     forbidClick?: boolean
   }
 
@@ -52,7 +52,12 @@
 
   export function loading(
     options?:
-      | { text?: string; duration?: number; style?: any; forbidClick?: boolean }
+      | {
+          text?: string
+          duration?: number
+          style?: LoadingStyle
+          forbidClick?: boolean
+        }
       | string
   ) {
     clearTimeout(timer)
@@ -78,7 +83,7 @@
     state.text = text
   }
 
-  function showIconToast(text: string, icon: any, options?: Option) {
+  function showIconToast(text: string, icon: IconType, options?: Option) {
     state.type = "icon"
     state.icon = icon
     state.text = text
@@ -122,20 +127,10 @@
     align-items: center;
     z-index: 1000;
     transition: all 0.3s;
-    opacity: 0;
-    visibility: hidden;
-    /* pointer-events: none;
-    pointer-events: all; */
-  }
-
-  .show {
-    visibility: visible;
-    opacity: 1;
   }
 
   .content-box {
     background: rgba(0, 0, 0, 0.7);
-    /* background: #444; */
     border-radius: 12px;
     z-index: 1002;
   }
@@ -156,7 +151,6 @@
     text-align: center;
     font-size: 13px;
     color: #fff;
-    /* line-height: 1; */
   }
 
   .text-box {
@@ -167,30 +161,32 @@
   }
 </style>
 
-<div
-  class="toast-box"
-  class:show={state.show}
-  style="pointer-events: {state.forbidClick ? 'all' : 'none'}">
-  <div class="content-box">
-    {#if state.type === 'icon'}
-      <div class="icon-box">
-        <Icon type={state.icon} />
+{#if state.show}
+  <div
+    class="toast-box"
+    transition:fade={{ duration: 300 }}
+    style="pointer-events: {state.forbidClick ? 'all' : 'none'}">
+    <div class="content-box">
+      {#if state.type === 'icon'}
+        <div class="icon-box">
+          <Icon type={state.icon} />
 
-        {#if state.text}
-          <div class="text">{state.text}</div>
-        {/if}
-      </div>
-    {:else if state.type === 'text'}
-      <div class="text-box">{state.text}</div>
-    {:else}
-      <div class="loading-box">
-        <div class="icon">
-          <Spinner type={state.loadingStyle} />
+          {#if state.text}
+            <div class="text">{state.text}</div>
+          {/if}
         </div>
-        {#if state.text}
-          <div class="text">{state.text}</div>
-        {/if}
-      </div>
-    {/if}
+      {:else if state.type === 'text'}
+        <div class="text-box">{state.text}</div>
+      {:else}
+        <div class="loading-box">
+          <div class="icon">
+            <Spinner type={state.loadingStyle} />
+          </div>
+          {#if state.text}
+            <div class="text">{state.text}</div>
+          {/if}
+        </div>
+      {/if}
+    </div>
   </div>
-</div>
+{/if}
