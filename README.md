@@ -1,7 +1,8 @@
 ## lb-toast
+
 基于 Svelte 构建的 Toast 组件，不依赖任何框架。
 
-#### 安装
+## 安装
 
 ```shell
 npm install lb-toast
@@ -21,11 +22,11 @@ or
 </script>
 ```
 
+## 在线预览
 
-#### 在线预览
 [在线预览 Demo](https://lb-tools.github.io/lb-toast/)
 
-#### 使用方式
+## 使用方式
 
 ```typescript
 import "lb-toast/dist/index.css"
@@ -48,3 +49,26 @@ Toast.clear()
 // 动态更新文字
 Toast.setText("动态更换文字")
 ```
+
+## 参数
+
+| 参数名      | 描述                            | 类型    |
+| :---------- | :------------------------------ | :------ |
+| duration    | toast 持续时间，为 0 则永远显示 | number  |
+| forbidClick | 是否禁止背景点击，默认 false    | boolean |
+
+Toast.loading
+
+| 参数名 | 描述             | 类型         |
+| :----- | :--------------- | :----------- |
+| text   | 加载框提示文本   | string       |
+| style  | 加载样式，共八种 | LoadingStyle |
+
+type LoadingStyle = "style0"
+| "style1"
+| "style2"
+| "style3"
+| "style4"
+| "style5"
+| "style6"
+| "style7"
