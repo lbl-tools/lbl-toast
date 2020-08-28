@@ -72,7 +72,6 @@
   export function clear() {
     clearTimeout(timer)
     state.show = false
-    state = { ...defaultState }
   }
 
   export function setText(text: string) {
@@ -153,11 +152,11 @@
 
   .icon-box > .text,
   .loading-box > .text {
-    padding-top: 16px;
+    padding-top: 12px;
     text-align: center;
     font-size: 13px;
     color: #fff;
-    line-height: 1;
+    /* line-height: 1; */
   }
 
   .text-box {

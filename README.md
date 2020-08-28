@@ -5,6 +5,9 @@ npm install lb-toast
 yarn add lb-toast
 ```
 
+#### 在线预览
+[在线预览 Demo](https://lb-tools.github.io/lb-toast/public/)
+
 #### 使用方式
 
 ```typescript
@@ -38,6 +41,6 @@ Toast.setText("动态更换文字")
 </head>
 
 <script>
-  Toast.info('哈哈哈哈')
+  Toast.info("哈哈哈哈")
 </script>
 ```
