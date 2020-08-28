@@ -6,7 +6,7 @@ yarn add lb-toast
 ```
 
 #### 在线预览
-[在线预览 Demo](https://lb-tools.github.io/lb-toast/public/)
+[在线预览 Demo](https://lb-tools.github.io/lb-toast/)
 
 #### 使用方式
 
