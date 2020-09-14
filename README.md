@@ -59,10 +59,11 @@ Toast.setText("动态更换文字")
 
 ## 参数
 
-| 参数名      | 描述                            | 类型    |
-| :---------- | :------------------------------ | :------ |
-| duration    | toast 持续时间，为 0 则永远显示 | number  |
-| forbidClick | 是否禁止背景点击，默认 false    | boolean |
+| 参数名      | 描述                                                             | 类型    |
+| :---------- | :--------------------------------------------------------------- | :------ |
+| duration    | 持续时间，0 或负值将永远显示，默认：1500，loading 模式默认为：-1 | number  |
+| forbidClick | 是否禁止背景点击，默认：false，loading 模式默认为：true          | boolean |
+| zIndex      | z-index 层级，默认：99999                                        | number  |
 
 Toast.loading
 
