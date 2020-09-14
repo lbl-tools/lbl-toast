@@ -10,11 +10,16 @@
     type?: "loading" | "icon" | "text"
     loadingStyle?: LoadingStyle
     forbidClick?: boolean
+    zIndex?: number
   }
 
   type Option = {
+    /** 持续时间，0或负值将永远显示 */
     duration?: number
+    /** 禁止背景点击 */
     forbidClick?: boolean
+    /** z-index 层级 */
+    zIndex?: number
   }
 
   const defaultState: IState = {
@@ -22,15 +27,26 @@
     text: null,
     icon: null,
     forbidClick: false,
+    zIndex: 99999,
+  }
+
+  let defaultConfig: Option = {
+    duration: 1500,
+    zIndex: 99999,
+    forbidClick: false,
   }
 
   let state: IState = { ...defaultState }
+
+  export function config(_config: Option) {
+    defaultConfig = { ...defaultConfig, ..._config }
+  }
 
   export function text(text: string, options?: Option) {
     if (!text) return
     state.type = "text"
     state.text = text
-    options = Object.assign({ duration: 1500 }, options)
+    options = { ...defaultConfig, ...options }
     return show(options)
   }
 
@@ -51,26 +67,28 @@
   }
 
   export function loading(
-    options?:
-      | {
+    option?:
+      | ({
           text?: string
-          duration?: number
           style?: LoadingStyle
-          forbidClick?: boolean
-        }
+        } & Option)
       | string
   ) {
     clearTimeout(timer)
     state.type = "loading"
-    if (!options) {
-      return show()
-    } else if (typeof options === "string") {
-      state.text = options
-      return show()
+    // loading 模式时背景默认不可点击
+    let _defaultConfig = { ...defaultConfig, duration: -1, forbidClick: true }
+
+    if (!option) {
+      return show(_defaultConfig)
+    } else if (typeof option === "string") {
+      state.text = option
+      return show(_defaultConfig)
     } else {
-      state.text = options.text
-      state.loadingStyle = options.style || "style0"
-      return show(options)
+      state.text = option.text
+      state.loadingStyle = option.style || "style0"
+      option = { ..._defaultConfig, ...option }
+      return show(option)
     }
   }
 
@@ -87,26 +105,23 @@
     state.type = "icon"
     state.icon = icon
     state.text = text
-    options = Object.assign({ duration: 1500 }, options)
+    options = { ...defaultConfig, ...options }
     return show(options)
   }
 
   /** 定时器 */
   let timer: any
 
-  function show(options?: Option) {
+  function show(options: Option) {
     clearTimeout(timer)
     state.show = true
-    if (options?.forbidClick) {
-      state.forbidClick = true
-    } else {
-      state.forbidClick = false
-    }
-    if (options?.duration > 0) {
+    state.forbidClick = options.forbidClick
+    if (options.duration > 0) {
       timer = setTimeout(() => {
         state.show = false
-      }, options!.duration)
+      }, options.duration)
     }
+    state.zIndex = options.zIndex
     return {
       setText,
       clear,
@@ -165,7 +180,7 @@
   <div
     class="toast-box"
     transition:fade={{ duration: 300 }}
-    style="pointer-events: {state.forbidClick ? 'all' : 'none'}">
+    style="pointer-events: {state.forbidClick ? 'all' : 'none'}; z-index: {state.zIndex}">
     <div class="content-box">
       {#if state.type === 'icon'}
         <div class="icon-box">

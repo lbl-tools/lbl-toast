@@ -9,8 +9,12 @@ type LoadingStyle =
   | "style7"
 
 type Option = {
+  /** 持续时间，0或负值将永远显示，默认：1500，loading模式默认为：-1 */
   duration?: number
+  /** 是否禁止背景点击，默认：false，loading模式默认为：true */
   forbidClick?: boolean
+  /** z-index 层级，默认：99999 */
+  zIndex?: number
 }
 
 type Result = {
@@ -19,19 +23,18 @@ type Result = {
 }
 
 interface _Toast {
-  text(text: string, duration?: Option): Result
-  info(text: string, duration?: Option): Result
-  success(text: string, duration?: Option): Result
-  error(text: string, duration?: Option): Result
-  warning(text: string, duration?: Option): Result
+  config(option: Option)
+  text(text: string, option?: Option): Result
+  info(text: string, option?: Option): Result
+  success(text: string, option?: Option): Result
+  error(text: string, option?: Option): Result
+  warning(text: string, option?: Option): Result
   loading(
-    options?:
-      | {
+    option?:
+      | ({
           text?: string
-          duration?: number
           style?: LoadingStyle
-          forbidClick?: boolean
-        }
+        } & Option)
       | string
   ): Result
 

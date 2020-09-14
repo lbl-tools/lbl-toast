@@ -17,6 +17,7 @@
     <h4>基本操作</h4>
     <div>
       <button onclick="toastClear()">关闭</button>
+      <button onclick="toastConfig()">覆盖基本配置(设置为3秒关闭)</button>
       <button onclick="toastText('你好啊')">显示文本</button>
       <button onclick="toasInfo()">显示不会自动关闭的信息</button>
       <button onclick="toastSuccess()">显示成功</button>
@@ -45,6 +46,12 @@
         Toast.clear()
       }
 
+      function toastConfig() {
+        Toast.config({
+          duration: 3000,
+        })
+      }
+
       function toastText(text) {
         Toast.text(text)
       }
@@ -70,12 +77,10 @@
 
       function showLoading() {
         // loading 默认不会自动关闭，如果需要自动关闭请设置 duration
-        // Toast.loading({
-        //   duration: 1000,
-        //   text: "加载中...",
-        // })
-
-        Toast.loading()
+        Toast.loading({
+          duration: 1000,
+          text: "加载中...",
+        })
       }
 
       function showLoadingWithStyle(style) {
