@@ -46,6 +46,11 @@ export default {
       format: "umd",
       name: "Toast",
     },
+    {
+      file: 'public/index.js',
+      format: "umd",
+      name: "Toast",
+    }
   ],
   plugins: [
     svelte({

@@ -18,9 +18,9 @@ jobs:
 
       - name: Format dir
         run: |
-          rm -rf `ls *|egrep -v '(.git|public|.nojekyll|dist)'`
+          rm -rf `ls *|egrep -v '(.git|public|.nojekyll)'`
           mkdir docs
-          mv ./public/* ./docs/
+          mv ./public/* .
 
       - name: 部署Github Pages
         run: |
