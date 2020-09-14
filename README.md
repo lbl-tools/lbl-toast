@@ -32,6 +32,13 @@ or
 import "lb-toast/dist/index.css"
 import Toast from "lb-toast"
 
+// 全局配置
+Toast.config({
+  duration: 3000  // 3秒,
+  forbidClick: true // 禁止背景点击
+  zIndex: 999999  // z-index 层级
+})
+
 // 默认 duration 1500 毫秒
 // 默认背景可点击
 Toast.info("普通信息 toast")
