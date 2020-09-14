@@ -19,7 +19,7 @@ jobs:
       - name: Format dir
         run: |
           rm -rf `ls *|egrep -v '(.git|public|.nojekyll|dist)'`
-          cp ./public ./doc.
+          cp ./public ./doc
 
       - name: 部署Github Pages
         run: |
