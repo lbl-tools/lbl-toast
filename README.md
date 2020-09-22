@@ -24,7 +24,7 @@ or
 
 ## 在线预览
 
-[在线预览 Demo](https://lb-tools.github.io/lb-toast/)
+[在线预览 Demo](http://lblblib.gitee.io/lb-toast)
 
 ## 使用方式
 
