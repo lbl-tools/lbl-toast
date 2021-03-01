@@ -1,12 +1,12 @@
-## lb-toast
+## lbl-toast
 
 基于 Svelte 构建的 Toast 组件，不依赖任何框架。
 
 ## 安装
 
 ```shell
-npm install lb-toast
-yarn add lb-toast
+npm install lbl-toast
+yarn add lbl-toast
 ```
 
 or
@@ -24,13 +24,13 @@ or
 
 ## 在线预览
 
-[在线预览 Demo](http://lblblib.gitee.io/lb-toast)
+[在线预览 Demo](http://lblblib.gitee.io/lbl-toast)
 
 ## 使用方式
 
 ```typescript
-import "lb-toast/dist/index.css"
-import Toast from "lb-toast"
+import "lbl-toast/dist/index.css"
+import Toast from "lbl-toast"
 
 // 全局配置
 Toast.config({

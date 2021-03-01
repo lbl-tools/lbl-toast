@@ -1,12 +1,12 @@
 {
-  "name": "lb-toast",
-  "version": "1.0.8",
+  "name": "lbl-toast",
+  "version": "1.0.0",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "author": "lblblong",
-  "repository": "https://github.com/lb-tools/lb-toast",
-  "homepage": "https://lb-tools.github.io/lb-toast/",
+  "repository": "https://github.com/lbl-tools/lbl-toast",
+  "homepage": "http://lblblib.gitee.io/lbl-toast",
   "scripts": {
     "build": "rollup -c",
     "serve": "rollup -c -w",
