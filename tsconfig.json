@@ -1,8 +1,0 @@
-{
-  "extends": "@tsconfig/svelte/tsconfig.json",
-  "compilerOptions": {
-    "importsNotUsedAsValues": "preserve"
-  },
-  "include": ["src/**/*", "dist/types/index.d.ts", "index.d.ts"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
-}
